@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Эмоциональное Лидерство — Жанна Адам</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;600;700&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --marvel-red:    #e23636;
+  --marvel-yellow: #f5c518;
+  --marvel-blue:   #1a6fb5;
+  --marvel-dark:   #0d0d0d;
+  --marvel-ink:    #111;
+  --marvel-paper:  #faf6e9;
+  --marvel-orange: #f47b20;
+  --marvel-green:  #2d8a4e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #1a1a1a;
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+.comic-book { width: 100%; max-width: 720px; background: var(--marvel-dark); }
+
+/* ── BANNER ── */
+.marvel-banner {
+  background: var(--marvel-red);
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--marvel-ink);
+}
+.marvel-logo {
+  font-family: 'Bangers', cursive;
+  font-size: 26px;
+  background: white;
+  color: var(--marvel-red);
+  padding: 2px 10px;
+  border-radius: 3px;
+  letter-spacing: 2px;
+}
+.banner-txt { font-size: 11px; color: #fff; text-transform: uppercase; letter-spacing: 1px; font-family: 'Oswald', sans-serif; }
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%);
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom: 5px solid var(--marvel-red);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(226,54,54,0.08) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+.cover-eye   { font-family: 'Bangers', cursive; font-size: 13px; color: var(--marvel-yellow); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; position: relative; }
+.cover-title { font-family: 'Bangers', cursive; font-size: clamp(36px,8vw,64px); color: #fff; line-height: 1; letter-spacing: 3px; text-transform: uppercase; text-shadow: 4px 4px 0 var(--marvel-red), 8px 8px 0 rgba(0,0,0,.5); position: relative; margin-bottom: 6px; }
+.cover-sub   { font-family: 'Bangers', cursive; font-size: clamp(18px,4vw,28px); color: var(--marvel-yellow); letter-spacing: 2px; text-transform: uppercase; position: relative; }
+.cover-issue { font-family: 'Oswald', sans-serif; font-size: 11px; color: rgba(255,255,255,.4); margin-top: 12px; letter-spacing: 2px; text-transform: uppercase; position: relative; }
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  background: var(--marvel-ink);
+  padding: 5px;
+}
+.panel {
+  position: relative;
+  background: var(--marvel-paper);
+  border: 3px solid var(--marvel-ink);
+  overflow: hidden;
+  animation: marvelPop .4s cubic-bezier(.34,1.56,.64,1) both;
+}
+.panel::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,.06) 1px, transparent 1px);
+  background-size: 4px 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+.full { grid-column: 1 / -1; }
+.panel:nth-child(1){animation-delay:.05s}
+.panel:nth-child(2){animation-delay:.15s}
+.panel:nth-child(3){animation-delay:.23s}
+.panel:nth-child(4){animation-delay:.32s}
+.panel:nth-child(5){animation-delay:.40s}
+.panel:nth-child(6){animation-delay:.47s}
+@keyframes marvelPop {
+  from { opacity:0; transform:scale(.92) rotate(-1deg); }
+  to   { opacity:1; transform:scale(1)   rotate(0deg);  }
+}
+
+/* ── CAPTIONS ── */
+.cap {
+  position: absolute; z-index: 10;
+  background: var(--marvel-yellow);
+  color: var(--marvel-ink);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700; font-size: 11px;
+  text-transform: uppercase; letter-spacing: .5px;
+  padding: 3px 8px;
+  border: 2px solid var(--marvel-ink);
+  line-height: 1.3;
+}
+.cap.tl { top: 8px; left: 8px; }
+.cap.tr { top: 8px; right: 8px; }
+.cap.bl { bottom: 8px; left: 8px; }
+.cap.br { bottom: 8px; right: 8px; }
+.cap.red  { background: var(--marvel-red);  color: #fff; }
+.cap.blue { background: var(--marvel-blue); color: #fff; }
+.cap.dark { background: var(--marvel-dark); color: var(--marvel-yellow); }
+.cap.org  { background: var(--marvel-orange); color: #fff; }
+
+/* ── BUBBLES ── */
+.bub {
+  position: absolute; z-index: 10;
+  background: #fff;
+  border: 2.5px solid var(--marvel-ink);
+  border-radius: 14px;
+  padding: 6px 10px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600; font-size: 12px;
+  line-height: 1.35; color: var(--marvel-ink);
+  max-width: 160px;
+}
+.bub::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; left: 20px;
+  border: 6px solid transparent;
+  border-top-color: var(--marvel-ink);
+}
+.bub.r::after { left: auto; right: 20px; }
+.bub.think { border-style: dashed; border-radius: 50px; }
+.bub.think::after { display: none; }
+
+/* ── SFX ── */
+.sfx {
+  position: absolute; z-index: 10;
+  font-family: 'Bangers', cursive;
+  line-height: 1; text-transform: uppercase;
+  -webkit-text-stroke: 2px var(--marvel-ink);
+  paint-order: stroke fill;
+}
+
+/* ── CTA ── */
+.cta-section { background: var(--marvel-dark); border-top: 5px solid var(--marvel-red); padding: 26px 20px; }
+.cta-head { font-family:'Bangers',cursive; font-size:clamp(28px,6vw,52px); color:#fff; text-align:center; letter-spacing:3px; text-transform:uppercase; text-shadow:3px 3px 0 var(--marvel-red); line-height:1.1; margin-bottom:6px; }
+.cta-sub  { font-family:'Oswald',sans-serif; font-size:14px; color:var(--marvel-yellow); text-align:center; text-transform:uppercase; letter-spacing:2px; margin-bottom:20px; }
+.event-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:20px; }
+.ev-item { background:#1e1e1e; border:2px solid var(--marvel-red); padding:10px 8px; text-align:center; }
+.ev-lbl { font-family:'Oswald',sans-serif; font-size:9px; color:var(--marvel-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.ev-val { font-family:'Bangers',cursive; font-size:18px; color:#fff; letter-spacing:1px; line-height:1.1; }
+.btn-wa {
+  display:block; width:100%;
+  background:var(--marvel-green); color:#fff;
+  font-family:'Bangers',cursive; font-size:24px; letter-spacing:2px;
+  text-align:center; padding:14px;
+  text-decoration:none;
+  border:3px solid var(--marvel-ink);
+  box-shadow:4px 4px 0 var(--marvel-ink);
+  margin-bottom:16px; transition:all .15s; text-transform:uppercase;
+}
+.btn-wa:hover  { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--marvel-ink); }
+.btn-wa:active { transform:translate(2px,2px);   box-shadow:2px 2px 0 var(--marvel-ink); }
+.divider { display:flex; align-items:center; gap:12px; margin:16px 0; color:rgba(255,255,255,.3); font-family:'Oswald',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:2px; }
+.divider::before,.divider::after { content:''; flex:1; height:1px; background:rgba(255,255,255,.15); }
+.form-row { display:flex; gap:10px; margin-bottom:10px; }
+.form-row input {
+  flex:1; background:#1e1e1e; border:2px solid var(--marvel-red);
+  color:#fff; font-family:'Oswald',sans-serif; font-size:14px;
+  padding:10px 14px; outline:none; transition:border-color .2s;
+}
+.form-row input::placeholder { color:rgba(255,255,255,.3); }
+.form-row input:focus { border-color:var(--marvel-yellow); }
+.btns { display:flex; gap:10px; }
+.btn-enroll {
+  flex:1; background:var(--marvel-yellow); color:var(--marvel-ink);
+  font-family:'Bangers',cursive; font-size:22px; letter-spacing:2px;
+  padding:12px; border:3px solid var(--marvel-ink);
+  box-shadow:4px 4px 0 var(--marvel-ink); cursor:pointer;
+  transition:all .15s; text-transform:uppercase;
+}
+.btn-enroll:hover  { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--marvel-ink); background:var(--marvel-orange); }
+.btn-enroll:active { transform:translate(2px,2px);   box-shadow:2px 2px 0 var(--marvel-ink); }
+.ok-msg { display:none; text-align:center; padding:20px; background:#1e2e1e; border:3px solid var(--marvel-green); }
+.ok-msg p    { font-family:'Bangers',cursive; font-size:28px; color:var(--marvel-green); letter-spacing:2px; }
+.ok-msg small { font-family:'Oswald',sans-serif; font-size:13px; color:rgba(255,255,255,.6); display:block; margin-top:6px; }
+.author { text-align:center; font-family:'Oswald',sans-serif; font-size:11px; color:rgba(255,255,255,.22); margin-top:20px; letter-spacing:2px; text-transform:uppercase; }
+@media(max-width:500px){
+  .form-row{flex-direction:column}
+  .btns{flex-direction:column}
+  .cover-title{font-size:28px}
+  .event-bar{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="comic-book">
+
+<!-- BANNER -->
+<div class="marvel-banner">
+  <span class="marvel-logo">MARVEL</span>
+  <span class="banner-txt">Специальное издание · Эмоциональное Лидерство</span>
+  <span class="banner-txt" style="color:var(--marvel-yellow)">№1</span>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eye">Жанна Адам представляет</div>
+  <div class="cover-title">Эмоциональное<br>Лидерство</div>
+  <div class="cover-sub">Тренинг-трансформация</div>
+  <div class="cover-issue">Выпуск #1 · Астана · 31 мая 2026</div>
+</div>
+
+<!-- GRID -->
+<div class="grid">
+
+<!-- ══ PANEL 1 · full · Пробка · Злость ══ -->
+<div class="panel full">
+<svg viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b0000"/>
+      <stop offset="100%" stop-color="#b02020"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="290" fill="url(#sky1)"/>
+  <!-- speed lines -->
+  <g stroke="#ff6b6b" stroke-width="1" opacity=".35">
+    <line x1="0" y1="50"  x2="720" y2="46"/>
+    <line x1="0" y1="85"  x2="720" y2="81"/>
+    <line x1="0" y1="120" x2="720" y2="116"/>
+    <line x1="0" y1="25"  x2="720" y2="23"/>
+  </g>
+  <!-- buildings -->
+  <rect x="0"   y="110" width="85"  height="140" fill="#2c0000"/>
+  <rect x="95"  y="80"  width="65"  height="170" fill="#1a0000"/>
+  <rect x="170" y="105" width="55"  height="145" fill="#2c0000"/>
+  <rect x="545" y="95"  width="75"  height="155" fill="#2c0000"/>
+  <rect x="632" y="75"  width="88"  height="175" fill="#1a0000"/>
+  <!-- windows -->
+  <g fill="#f5c518" opacity=".25" width="8" height="6">
+    <rect x="10" y="120" width="8" height="6"/> <rect x="28" y="120" width="8" height="6"/>
+    <rect x="10" y="138" width="8" height="6"/> <rect x="28" y="138" width="8" height="6"/>
+    <rect x="105" y="95" width="8" height="6"/> <rect x="125" y="95" width="8" height="6"/>
+    <rect x="650" y="90" width="8" height="6"/> <rect x="668" y="90" width="8" height="6"/>
+  </g>
+  <!-- road -->
+  <rect x="0" y="205" width="720" height="85" fill="#444"/>
+  <rect x="0" y="205" width="720" height="3" fill="#f5c518" opacity=".4"/>
+  <g fill="#f5c518" opacity=".25">
+    <rect x="50"  y="240" width="60" height="4"/>
+    <rect x="185" y="240" width="60" height="4"/>
+    <rect x="320" y="240" width="60" height="4"/>
+    <rect x="455" y="240" width="60" height="4"/>
+    <rect x="590" y="240" width="60" height="4"/>
+  </g>
+  <!-- car 1 red -->
+  <rect x="75"  y="207" width="92" height="54" rx="5" fill="#c0392b" stroke="#111" stroke-width="2"/>
+  <rect x="85"  y="213" width="72" height="24" rx="3" fill="#1a3a5c"/>
+  <circle cx="90"  cy="263" r="10" fill="#222" stroke="#111" stroke-width="2"/>
+  <circle cx="158" cy="263" r="10" fill="#222" stroke="#111" stroke-width="2"/>
+  <!-- car 2 yellow -->
+  <rect x="228" y="210" width="86" height="51" rx="5" fill="#e8b800" stroke="#111" stroke-width="2"/>
+  <rect x="238" y="215" width="66" height="22" rx="3" fill="#1a3a5c"/>
+  <circle cx="243" cy="263" r="10" fill="#222" stroke="#111" stroke-width="2"/>
+  <circle cx="304" cy="263" r="10" fill="#222" stroke="#111" stroke-width="2"/>
+  <!-- car 3 blue -->
+  <rect x="378" y="208" width="90" height="53" rx="5" fill="#1a6fb5" stroke="#111" stroke-width="2"/>
+  <rect x="388" y="213" width="70" height="23" rx="3" fill="#1a3a5c"/>
+  <circle cx="393" cy="263" r="10" fill="#222" stroke="#111" stroke-width="2"/>
+  <circle cx="459" cy="263" r="10" fill="#222" stroke="#111" stroke-width="2"/>
+  <!-- hero cat car -->
+  <rect x="268" y="148" width="112" height="66" rx="6" fill="#e8d5a3" stroke="#111" stroke-width="3"/>
+  <rect x="277" y="154" width="94"  height="30" rx="4" fill="#1a3a5c"/>
+  <circle cx="284" cy="216" r="12" fill="#222" stroke="#111" stroke-width="2"/>
+  <circle cx="372" cy="216" r="12" fill="#222" stroke="#111" stroke-width="2"/>
+  <!-- smoke -->
+  <circle cx="382" cy="158" r="9"  fill="rgba(160,160,160,.55)"/>
+  <circle cx="394" cy="150" r="7"  fill="rgba(160,160,160,.45)"/>
+  <circle cx="404" cy="144" r="5"  fill="rgba(160,160,160,.35)"/>
+  <!-- ── cat face inside car (злость) ── -->
+  <ellipse cx="326" cy="177" rx="22" ry="20" fill="#d4a574" stroke="#111" stroke-width="2"/>
+  <polygon points="308,163 302,149 317,160" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="344,163 350,149 335,160" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="309,161 304,152 316,159" fill="#e8a0a0"/>
+  <polygon points="343,161 348,152 336,159" fill="#e8a0a0"/>
+  <!-- hachimaki -->
+  <rect x="305" y="161" width="42" height="7" rx="3" fill="#111"/>
+  <!-- glasses -->
+  <circle cx="317" cy="175" r="9"  fill="none" stroke="#f5c518" stroke-width="1.5"/>
+  <circle cx="335" cy="175" r="9"  fill="none" stroke="#f5c518" stroke-width="1.5"/>
+  <line   x1="326" y1="175" x2="326" y2="175" stroke="#f5c518" stroke-width="1.5"/>
+  <path   d="M308,172 L304,170" stroke="#f5c518" stroke-width="1.5"/>
+  <path   d="M344,172 L348,170" stroke="#f5c518" stroke-width="1.5"/>
+  <!-- eyes red angry -->
+  <ellipse cx="317" cy="175" rx="7" ry="6" fill="white" stroke="#111" stroke-width="1"/>
+  <ellipse cx="335" cy="175" rx="7" ry="6" fill="white" stroke="#111" stroke-width="1"/>
+  <ellipse cx="317" cy="175" rx="5" ry="5" fill="#cc0000"/>
+  <ellipse cx="335" cy="175" rx="5" ry="5" fill="#cc0000"/>
+  <ellipse cx="317" cy="175" rx="2.5" ry="2.5" fill="#111"/>
+  <ellipse cx="335" cy="175" rx="2.5" ry="2.5" fill="#111"/>
+  <!-- brows sharp inward -->
+  <path d="M309,166 L320,170" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M343,166 L332,170" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- mouth straight -->
+  <path d="M319,185 L333,185" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+  <!-- whiskers -->
+  <line x1="294" y1="180" x2="312" y2="181" stroke="#111" stroke-width="1"/>
+  <line x1="294" y1="185" x2="312" y2="183" stroke="#111" stroke-width="1"/>
+  <line x1="340" y1="181" x2="358" y2="180" stroke="#111" stroke-width="1"/>
+  <line x1="340" y1="183" x2="358" y2="185" stroke="#111" stroke-width="1"/>
+  <!-- steam -->
+  <path d="M318,154 Q320,145 318,137" stroke="#e23636" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M326,152 Q328,142 326,134" stroke="#e23636" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M334,154 Q336,145 334,137" stroke="#e23636" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
+<div class="cap tl">7:45 утра · Астана</div>
+<div class="cap tr red">Час пик</div>
+<div class="bub" style="top:10px;left:50%;transform:translateX(-50%);max-width:200px;text-align:center;font-size:13px;">Опять пробки!! Снова опаздываю!!</div>
+<div class="sfx" style="bottom:16px;right:18px;font-size:56px;color:#e23636;-webkit-text-stroke:3px #111;">BEEEP!</div>
+</div>
+
+<!-- ══ PANEL 2 · left · Совещание · Раздражение ══ -->
+<div class="panel">
+<svg viewBox="0 0 350 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="room2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8e0d0"/>
+      <stop offset="100%" stop-color="#c8bca8"/>
+    </linearGradient>
+  </defs>
+  <rect width="350" height="300" fill="url(#room2)"/>
+  <!-- whiteboard -->
+  <rect x="40" y="28" width="270" height="145" rx="3" fill="white" stroke="#111" stroke-width="3"/>
+  <rect x="50" y="37" width="250" height="127" fill="#f8f8f8"/>
+  <text x="60" y="55" font-family="Oswald,sans-serif" font-size="12" fill="#555" font-weight="700">Q2 ОТЧЁТ</text>
+  <polyline points="65,138 88,118 112,98 136,112 158,86 180,72 202,77 224,62 246,67" stroke="#e23636" stroke-width="2.5" fill="none"/>
+  <polyline points="65,138 88,130 112,128 136,132 158,125 180,130 202,122" stroke="#1a6fb5" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <!-- table -->
+  <rect x="20" y="182" width="310" height="14" rx="4" fill="#7b5c32" stroke="#111" stroke-width="2"/>
+  <rect x="42"  y="196" width="14" height="80" fill="#7b5c32" stroke="#111" stroke-width="1"/>
+  <rect x="294" y="196" width="14" height="80" fill="#7b5c32" stroke="#111" stroke-width="1"/>
+  <!-- Person 1: тёмный костюм, указывает на доску, игнорирует кота -->
+  <rect x="44" y="189" width="36" height="30" rx="3" fill="#2a4a8a" stroke="#111" stroke-width="1.5"/>
+  <path d="M56,189 L58,180 L66,180 L68,189" fill="white" stroke="#111" stroke-width="0.5"/>
+  <ellipse cx="62" cy="172" rx="20" ry="18" fill="#c09060" stroke="#111" stroke-width="1.5"/>
+  <rect x="42" y="156" width="40" height="9" rx="4" fill="#1a0a00"/>
+  <ellipse cx="56" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <ellipse cx="68" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <path d="M52,164 L57,167" stroke="#222" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M72,164 L67,167" stroke="#222" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="62" cy="178" rx="7" ry="4" fill="#b04040" stroke="#111" stroke-width="0.8"/>
+  <path d="M80,197 Q92,187 100,191" stroke="#c09060" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <ellipse cx="103" cy="191" rx="7" ry="5" fill="#c09060" stroke="#111" stroke-width="1"/>
+  <text x="34" y="150" font-family="Bangers,cursive" font-size="13" fill="#555" opacity=".8">???</text>
+
+  <!-- Person 2: красный, рука поднята, смотрит на кота -->
+  <rect x="94" y="189" width="36" height="30" rx="3" fill="#8a2020" stroke="#111" stroke-width="1.5"/>
+  <path d="M106,189 L108,180 L116,180 L118,189" fill="white" stroke="#111" stroke-width="0.5"/>
+  <ellipse cx="112" cy="172" rx="20" ry="18" fill="#d4a070" stroke="#111" stroke-width="1.5"/>
+  <path d="M92,160 Q112,150 132,160" fill="#111" stroke="none"/>
+  <ellipse cx="106" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <ellipse cx="118" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <path d="M103,164 Q107,162 111,164" stroke="#222" stroke-width="1.5" fill="none"/>
+  <path d="M113,164 Q117,162 121,164" stroke="#222" stroke-width="1.5" fill="none"/>
+  <ellipse cx="112" cy="178" rx="8" ry="5" fill="#b04040" stroke="#111" stroke-width="0.8"/>
+  <path d="M112,155 L116,142" stroke="#d4a070" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <ellipse cx="117" cy="140" rx="7" ry="6" fill="#d4a070" stroke="#111" stroke-width="1"/>
+
+  <!-- Person 3: пучок, фиолетовый, руки в стороны, не понимает -->
+  <rect x="224" y="189" width="36" height="30" rx="3" fill="#6a2a8a" stroke="#111" stroke-width="1.5"/>
+  <path d="M236,189 L238,180 L246,180 L248,189" fill="white" stroke="#111" stroke-width="0.5"/>
+  <ellipse cx="242" cy="172" rx="20" ry="18" fill="#b89070" stroke="#111" stroke-width="1.5"/>
+  <circle cx="242" cy="156" r="9" fill="#222"/>
+  <ellipse cx="236" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <ellipse cx="248" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <path d="M232,164 L237,167" stroke="#222" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M252,164 L247,167" stroke="#222" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="242" cy="178" rx="7" ry="4" fill="#b04040" stroke="#111" stroke-width="0.8"/>
+  <path d="M224,200 Q210,192 206,197" stroke="#b89070" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <ellipse cx="203" cy="197" rx="7" ry="5" fill="#b89070" stroke="#111" stroke-width="1"/>
+  <path d="M260,200 Q274,192 278,197" stroke="#b89070" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <ellipse cx="281" cy="197" rx="7" ry="5" fill="#b89070" stroke="#111" stroke-width="1"/>
+  <text x="258" y="150" font-family="Bangers,cursive" font-size="13" fill="#555" opacity=".8">???</text>
+
+  <!-- Person 4: седой, тёмно-синий, разводит руками -->
+  <rect x="274" y="189" width="36" height="30" rx="3" fill="#1a2a5a" stroke="#111" stroke-width="1.5"/>
+  <path d="M286,189 L288,180 L296,180 L298,189" fill="white" stroke="#111" stroke-width="0.5"/>
+  <ellipse cx="292" cy="172" rx="20" ry="18" fill="#a08068" stroke="#111" stroke-width="1.5"/>
+  <rect x="272" y="156" width="40" height="9" rx="4" fill="#aaa"/>
+  <ellipse cx="286" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <ellipse cx="298" cy="169" rx="3.5" ry="3" fill="#222"/>
+  <path d="M283,164 L288,167" stroke="#222" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M301,164 L296,167" stroke="#222" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="292" cy="179" rx="9" ry="5" fill="#b04040" stroke="#111" stroke-width="0.8"/>
+  <path d="M274,200 Q258,191 252,196" stroke="#a08068" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <ellipse cx="249" cy="196" rx="7" ry="5" fill="#a08068" stroke="#111" stroke-width="1"/>
+  <path d="M310,200 Q326,191 330,196" stroke="#a08068" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <ellipse cx="333" cy="196" rx="7" ry="5" fill="#a08068" stroke="#111" stroke-width="1"/>
+  <!-- ── cat (раздражение) ── -->
+  <ellipse cx="177" cy="174" rx="26" ry="24" fill="#d4a574" stroke="#111" stroke-width="2"/>
+  <polygon points="156,161 148,142 164,158" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="198,161 206,142 190,158" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="157,159 150,145 163,157" fill="#e8a0a0"/>
+  <polygon points="197,159 204,145 191,157" fill="#e8a0a0"/>
+  <rect x="151" y="158" width="52" height="7" rx="3" fill="#111"/>
+  <!-- glasses -->
+  <circle cx="166" cy="172" r="10" fill="none" stroke="#f5c518" stroke-width="1.5"/>
+  <circle cx="188" cy="172" r="10" fill="none" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M156,169 L151,167" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M198,169 L203,167" stroke="#f5c518" stroke-width="1.5"/>
+  <!-- eyes narrowed red -->
+  <ellipse cx="166" cy="172" rx="8" ry="5" fill="white" stroke="#111" stroke-width="1"/>
+  <ellipse cx="188" cy="172" rx="8" ry="5" fill="white" stroke="#111" stroke-width="1"/>
+  <ellipse cx="166" cy="172" rx="6" ry="4" fill="#cc0000"/>
+  <ellipse cx="188" cy="172" rx="6" ry="4" fill="#cc0000"/>
+  <ellipse cx="166" cy="172" rx="3" ry="2" fill="#111"/>
+  <ellipse cx="188" cy="172" rx="3" ry="2" fill="#111"/>
+  <!-- brows furrowed -->
+  <path d="M158,163 L170,167" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M196,163 L184,167" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- tight mouth -->
+  <path d="M164,184 Q177,181 190,184" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- whiskers -->
+  <line x1="141" y1="179" x2="160" y2="180" stroke="#111" stroke-width="1"/>
+  <line x1="141" y1="184" x2="160" y2="182" stroke="#111" stroke-width="1"/>
+  <line x1="194" y1="180" x2="213" y2="179" stroke="#111" stroke-width="1"/>
+  <line x1="194" y1="182" x2="213" y2="184" stroke="#111" stroke-width="1"/>
+  <!-- katana on table -->
+  <line x1="82" y1="179" x2="272" y2="179" stroke="#b0b0b0" stroke-width="3"/>
+  <ellipse cx="272" cy="179" rx="9" ry="5" fill="#7b5c32" stroke="#111" stroke-width="1.5"/>
+</svg>
+<div class="cap tl">10:00 · Совещание #4</div>
+<div class="bub think" style="top:8px;right:8px;font-size:11px;max-width:140px;">Почему они меня не понимают?!</div>
+<div class="sfx" style="bottom:8px;right:8px;font-size:20px;color:#f47b20;-webkit-text-stroke:1px #111;font-family:'Oswald',sans-serif;font-weight:700;">Как всё это раздражает!..</div>
+</div>
+
+<!-- ══ PANEL 3 · right · Шторм · Ярость ══ -->
+<div class="panel">
+<svg viewBox="0 0 350 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="fury3" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#ff4500"/>
+      <stop offset="60%" stop-color="#8b0000"/>
+      <stop offset="100%" stop-color="#1a0000"/>
+    </radialGradient>
+  </defs>
+  <rect width="350" height="300" fill="url(#fury3)"/>
+  <!-- rays -->
+  <g stroke="#f5c518" stroke-width="1.5" opacity=".65">
+    <line x1="175" y1="148" x2="25"  y2="25"/>
+    <line x1="175" y1="148" x2="325" y2="18"/>
+    <line x1="175" y1="148" x2="8"   y2="148"/>
+    <line x1="175" y1="148" x2="342" y2="148"/>
+    <line x1="175" y1="148" x2="25"  y2="275"/>
+    <line x1="175" y1="148" x2="325" y2="282"/>
+    <line x1="175" y1="148" x2="175" y2="8"/>
+    <line x1="175" y1="148" x2="175" y2="292"/>
+  </g>
+  <!-- lightning -->
+  <path d="M60,8 L38,82 L64,82 L32,165 L54,165 L18,255" stroke="#f5c518" stroke-width="3" fill="none" opacity=".8"/>
+  <path d="M292,18 L312,92 L286,92 L318,175" stroke="#f5c518" stroke-width="2.5" fill="none" opacity=".6"/>
+  <!-- body -->
+  <rect x="148" y="180" width="55" height="80" rx="8" fill="#1a1a6b" stroke="#111" stroke-width="2"/>
+  <rect x="143" y="210" width="65" height="18" rx="3" fill="#f5c518" stroke="#111" stroke-width="1.5"/>
+  <path d="M165,180 L175,200 L185,180" fill="white" stroke="#111" stroke-width="1.5"/>
+  <!-- arms outstretched -->
+  <path d="M148,200 L103,183 L96,176" stroke="#d4a574" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <path d="M203,200 L248,183 L255,176" stroke="#d4a574" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <ellipse cx="93"  cy="174" rx="13" ry="10" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="258" cy="174" rx="13" ry="10" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <!-- shoulder armor -->
+  <path d="M135,190 L120,187 L114,202 L135,207" fill="#c0c0c0" stroke="#111" stroke-width="1.5"/>
+  <path d="M215,190 L230,187 L236,202 L215,207" fill="#c0c0c0" stroke="#111" stroke-width="1.5"/>
+  <!-- katana raised -->
+  <line x1="218" y1="98" x2="248" y2="178" stroke="#c0c0c0" stroke-width="4"/>
+  <ellipse cx="244" cy="174" rx="9" ry="5" fill="#7b5c32" stroke="#111" stroke-width="1.5" transform="rotate(-30 244 174)"/>
+  <!-- head -->
+  <ellipse cx="175" cy="157" rx="29" ry="27" fill="#d4a574" stroke="#111" stroke-width="2.5"/>
+  <!-- ears forward -->
+  <polygon points="152,142 141,121 162,139" fill="#d4a574" stroke="#111" stroke-width="2"/>
+  <polygon points="198,142 209,121 188,139" fill="#d4a574" stroke="#111" stroke-width="2"/>
+  <polygon points="153,140 144,124 161,138" fill="#ff9999"/>
+  <polygon points="197,140 206,124 189,138" fill="#ff9999"/>
+  <!-- hachimaki flying -->
+  <rect x="148" y="142" width="55" height="8" rx="3" fill="#111"/>
+  <path d="M203,146 Q222,138 238,147 Q252,152 260,144" stroke="#111" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- glasses askew -->
+  <circle cx="163" cy="157" r="12" fill="none" stroke="#f5c518" stroke-width="1.5" transform="rotate(10 163 157)"/>
+  <circle cx="188" cy="156" r="12" fill="none" stroke="#f5c518" stroke-width="1.5" transform="rotate(-6 188 156)"/>
+  <path d="M151,153 L147,151" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M200,152 L204,150" stroke="#f5c518" stroke-width="1.5"/>
+  <!-- eyes extreme fury -->
+  <ellipse cx="163" cy="157" rx="10" ry="9" fill="white" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="188" cy="157" rx="10" ry="9" fill="white" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="163" cy="157" rx="8"  ry="8" fill="#cc0000"/>
+  <ellipse cx="188" cy="157" rx="8"  ry="8" fill="#cc0000"/>
+  <ellipse cx="163" cy="157" rx="4"  ry="4" fill="#111"/>
+  <ellipse cx="188" cy="157" rx="4"  ry="4" fill="#111"/>
+  <ellipse cx="166" cy="154" rx="2" ry="2" fill="white"/>
+  <ellipse cx="191" cy="154" rx="2" ry="2" fill="white"/>
+  <!-- brows extreme -->
+  <path d="M150,144 L166,150" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+  <path d="M200,144 L184,150" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+  <!-- snarl -->
+  <path d="M157,170 Q164,177 175,176 Q186,177 193,170" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <polygon points="162,171 164,177 166,171" fill="white" stroke="#111" stroke-width=".5"/>
+  <polygon points="173,172 175,178 177,172" fill="white" stroke="#111" stroke-width=".5"/>
+  <polygon points="184,171 186,177 188,171" fill="white" stroke="#111" stroke-width=".5"/>
+  <!-- whiskers -->
+  <line x1="144" y1="167" x2="158" y2="168" stroke="#111" stroke-width="1.5"/>
+  <line x1="144" y1="172" x2="158" y2="170" stroke="#111" stroke-width="1.5"/>
+  <line x1="192" y1="168" x2="206" y2="167" stroke="#111" stroke-width="1.5"/>
+  <line x1="192" y1="170" x2="206" y2="172" stroke="#111" stroke-width="1.5"/>
+</svg>
+<div class="cap tl red">Предел!</div>
+<div class="sfx" style="top:42%;left:50%;transform:translate(-50%,-50%);font-size:66px;color:#f5c518;-webkit-text-stroke:3px #111;white-space:nowrap;">БУУУМ!</div>
+<div class="bub" style="bottom:12px;left:8px;font-size:12px;max-width:170px;">Что же делать?!<br>Где найти спокойствие?..</div>
+</div>
+
+<!-- ══ PANEL 4 · full · Пауза · Покой ══ -->
+<div class="panel full">
+<svg viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="peace4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4e8"/>
+      <stop offset="100%" stop-color="#d0e8d0"/>
+    </linearGradient>
+    <radialGradient id="glow4" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,.65)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="720" height="290" fill="url(#peace4)"/>
+  <circle cx="360" cy="145" r="130" fill="url(#glow4)"/>
+  <!-- kanji 静 心 -->
+  <text x="60"  y="185" font-family="Noto Serif JP,serif" font-size="120" fill="rgba(45,138,78,.1)" font-weight="900">静</text>
+  <text x="540" y="185" font-family="Noto Serif JP,serif" font-size="120" fill="rgba(45,138,78,.1)" font-weight="900">心</text>
+  <!-- sakura -->
+  <g fill="rgba(255,182,193,.55)" stroke="rgba(200,100,120,.3)" stroke-width=".5">
+    <ellipse cx="120" cy="58" rx="9" ry="4" transform="rotate(30 120 58)"/>
+    <ellipse cx="602" cy="88" rx="8" ry="3.5" transform="rotate(-22 602 88)"/>
+    <ellipse cx="195" cy="248" rx="9" ry="4" transform="rotate(45 195 248)"/>
+    <ellipse cx="558" cy="255" rx="7" ry="3" transform="rotate(15 558 255)"/>
+    <ellipse cx="640" cy="50" rx="7" ry="3.5" transform="rotate(10 640 50)"/>
+  </g>
+  <!-- floating dots -->
+  <g fill="rgba(45,138,78,.2)">
+    <circle cx="150" cy="78" r="7"/>
+    <circle cx="585" cy="60" r="9"/>
+    <circle cx="625" cy="185" r="5"/>
+    <circle cx="95"  cy="205" r="7"/>
+  </g>
+  <!-- cat sitting meditation -->
+  <!-- legs crossed -->
+  <ellipse cx="360" cy="258" rx="58" ry="18" fill="#d4a574" stroke="#111" stroke-width="2"/>
+  <!-- body -->
+  <rect x="322" y="175" width="76" height="86" rx="12" fill="#1a1a6b" stroke="#111" stroke-width="2"/>
+  <rect x="317" y="214" width="86" height="17" rx="3" fill="#f5c518" stroke="#111" stroke-width="1.5"/>
+  <path d="M342,175 L360,198 L378,175" fill="white" stroke="#111" stroke-width="1.5"/>
+  <!-- arms meditative -->
+  <path d="M322,218 Q302,232 312,253 Q332,262 360,258" stroke="#d4a574" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <path d="M398,218 Q418,232 408,253 Q388,262 360,258" stroke="#d4a574" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <!-- head -->
+  <ellipse cx="360" cy="157" rx="31" ry="28" fill="#d4a574" stroke="#111" stroke-width="2.5"/>
+  <!-- ears relaxed down -->
+  <polygon points="335,144 326,126 346,141" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="385,144 394,126 374,141" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="336,142 328,129 345,140" fill="#ffcccc"/>
+  <polygon points="384,142 392,129 375,140" fill="#ffcccc"/>
+  <!-- hachimaki -->
+  <rect x="331" y="141" width="58" height="7" rx="3" fill="#111"/>
+  <!-- glasses relaxed -->
+  <circle cx="349" cy="158" r="11" fill="rgba(245,197,24,.08)" stroke="#f5c518" stroke-width="1.5"/>
+  <circle cx="371" cy="158" r="11" fill="rgba(245,197,24,.08)" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M338,154 L334,152" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M382,154 L386,152" stroke="#f5c518" stroke-width="1.5"/>
+  <!-- eyes closed arc -->
+  <path d="M343,157 Q349,151 355,157" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M365,157 Q371,151 377,157" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- brows soft -->
+  <path d="M340,148 Q348,144 354,147" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M380,148 Q372,144 366,147" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- smile -->
+  <path d="M350,170 Q360,178 370,170" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- whiskers -->
+  <line x1="324" y1="164" x2="344" y2="165" stroke="#111" stroke-width="1"/>
+  <line x1="324" y1="169" x2="344" y2="167" stroke="#111" stroke-width="1"/>
+  <line x1="376" y1="165" x2="396" y2="164" stroke="#111" stroke-width="1"/>
+  <line x1="376" y1="167" x2="396" y2="169" stroke="#111" stroke-width="1"/>
+  <!-- breath wisps -->
+  <path d="M354,122 Q356,112 354,104" stroke="rgba(45,138,78,.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M360,120 Q362,109 360,100" stroke="rgba(45,138,78,.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M366,122 Q368,112 366,104" stroke="rgba(45,138,78,.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
+<div class="cap tl dark">Ответ прост...</div>
+<div class="cap tr blue">Жанна Адам</div>
+<div class="bub" style="top:12px;left:50%;transform:translateX(-50%);max-width:240px;text-align:center;font-size:14px;font-weight:700;">На тренинге<br>у Жанны Адам!</div>
+</div>
+
+<!-- ══ PANEL 5 · left · Осознание · Уверенность ══ -->
+<div class="panel">
+<svg viewBox="0 0 350 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="conf5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2a4a"/>
+      <stop offset="100%" stop-color="#0d1a35"/>
+    </linearGradient>
+    <radialGradient id="spot5" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="rgba(26,111,181,.35)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <rect width="350" height="300" fill="url(#conf5)"/>
+  <rect width="350" height="300" fill="url(#spot5)"/>
+  <!-- stars -->
+  <g fill="#f5c518" opacity=".55">
+    <circle cx="38"  cy="42" r="2"/>
+    <circle cx="80"  cy="24" r="1.5"/>
+    <circle cx="305" cy="52" r="2"/>
+    <circle cx="325" cy="28" r="1.2"/>
+    <circle cx="30"  cy="205" r="1.5"/>
+    <circle cx="332" cy="222" r="2"/>
+  </g>
+  <!-- kanji 悟 insight -->
+  <text x="230" y="122" font-family="Noto Serif JP,serif" font-size="82" fill="rgba(26,111,181,.2)" font-weight="900">悟</text>
+  <!-- legs -->
+  <rect x="155" y="232" width="18" height="55" rx="6" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <rect x="177" y="232" width="18" height="55" rx="6" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <!-- body -->
+  <rect x="140" y="156" width="70" height="84" rx="10" fill="#1a1a6b" stroke="#111" stroke-width="2"/>
+  <rect x="135" y="196" width="80" height="16" rx="3" fill="#f5c518" stroke="#111" stroke-width="1.5"/>
+  <path d="M158,156 L175,178 L192,156" fill="white" stroke="#111" stroke-width="1.5"/>
+  <!-- shoulder armor -->
+  <path d="M128,167 L112,164 L107,180 L128,185" fill="#c0c0c0" stroke="#111" stroke-width="1.5"/>
+  <path d="M222,167 L238,164 L243,180 L222,185" fill="#c0c0c0" stroke="#111" stroke-width="1.5"/>
+  <!-- arm raised fist -->
+  <path d="M140,178 L108,157" stroke="#d4a574" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <ellipse cx="105" cy="155" rx="14" ry="11" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <!-- arm down -->
+  <path d="M210,178 L220,212" stroke="#d4a574" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <ellipse cx="222" cy="215" rx="11" ry="9" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <!-- katana -->
+  <line x1="215" y1="130" x2="232" y2="200" stroke="#c0c0c0" stroke-width="3"/>
+  <ellipse cx="230" cy="196" rx="7" ry="4" fill="#7b5c32" stroke="#111" stroke-width="1.5" transform="rotate(20 230 196)"/>
+  <!-- head -->
+  <ellipse cx="175" cy="134" rx="28" ry="26" fill="#d4a574" stroke="#111" stroke-width="2"/>
+  <!-- ears straight -->
+  <polygon points="154,121 146,102 163,119" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="196,121 204,102 187,119" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="155,119 148,105 162,118" fill="#ffcccc"/>
+  <polygon points="195,119 202,105 188,118" fill="#ffcccc"/>
+  <rect x="149" y="118" width="52" height="7" rx="3" fill="#111"/>
+  <!-- glasses -->
+  <circle cx="163" cy="133" r="11" fill="rgba(245,197,24,.06)" stroke="#f5c518" stroke-width="1.5"/>
+  <circle cx="187" cy="133" r="11" fill="rgba(245,197,24,.06)" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M152,129 L148,127" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M198,129 L202,127" stroke="#f5c518" stroke-width="1.5"/>
+  <!-- eyes confident blue -->
+  <ellipse cx="163" cy="133" rx="9" ry="8" fill="white" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="187" cy="133" rx="9" ry="8" fill="white" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="163" cy="133" rx="7" ry="7" fill="#1a6fb5"/>
+  <ellipse cx="187" cy="133" rx="7" ry="7" fill="#1a6fb5"/>
+  <ellipse cx="163" cy="133" rx="3.5" ry="3.5" fill="#111"/>
+  <ellipse cx="187" cy="133" rx="3.5" ry="3.5" fill="#111"/>
+  <ellipse cx="165" cy="130" rx="2" ry="2" fill="white"/>
+  <ellipse cx="189" cy="130" rx="2" ry="2" fill="white"/>
+  <!-- brows determined -->
+  <path d="M152,122 L166,127" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M198,122 L184,127" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- smirk -->
+  <path d="M163,145 Q173,150 183,146" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- whiskers -->
+  <line x1="140" y1="140" x2="158" y2="140" stroke="#111" stroke-width="1"/>
+  <line x1="140" y1="145" x2="158" y2="143" stroke="#111" stroke-width="1"/>
+  <line x1="192" y1="140" x2="210" y2="140" stroke="#111" stroke-width="1"/>
+  <line x1="192" y1="143" x2="210" y2="145" stroke="#111" stroke-width="1"/>
+  <!-- insight sparks -->
+  <text x="52" y="80" font-family="Bangers,cursive" font-size="22" fill="#f5c518" opacity=".9">!</text>
+  <text x="74" y="64" font-family="Bangers,cursive" font-size="16" fill="#f5c518" opacity=".9">★</text>
+  <text x="96" y="82" font-family="Bangers,cursive" font-size="20" fill="#f5c518" opacity=".9">!</text>
+</svg>
+<div class="cap tl blue">Осознание</div>
+<div class="bub" style="bottom:12px;left:8px;font-size:12px;max-width:165px;">Эмоции — это наша жизнь.<br>Кто ими управляет?</div>
+</div>
+
+<!-- ══ PANEL 6 · right · Результат · Тепло ══ -->
+<div class="panel">
+<svg viewBox="0 0 350 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="warm6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff8e7"/>
+      <stop offset="100%" stop-color="#ffe0a0"/>
+    </linearGradient>
+  </defs>
+  <rect width="350" height="300" fill="url(#warm6)"/>
+  <!-- warm rays -->
+  <g stroke="#f5c518" stroke-width="1" opacity=".28">
+    <line x1="178" y1="132" x2="28"  y2="18"/>
+    <line x1="178" y1="132" x2="325" y2="18"/>
+    <line x1="178" y1="132" x2="8"   y2="132"/>
+    <line x1="178" y1="132" x2="342" y2="132"/>
+    <line x1="178" y1="132" x2="58"  y2="288"/>
+    <line x1="178" y1="132" x2="298" y2="288"/>
+  </g>
+  <!-- team members -->
+  <ellipse cx="68"  cy="238" rx="23" ry="20" fill="#c8a068"/>
+  <rect    x="45"   y="238" width="46" height="55" rx="8" fill="#c8a068"/>
+  <path d="M60,244 Q68,250 76,244" stroke="#111" stroke-width="1.5" fill="none"/>
+  <ellipse cx="283" cy="238" rx="23" ry="20" fill="#a07848"/>
+  <rect    x="260"  y="238" width="46" height="55" rx="8" fill="#a07848"/>
+  <path d="M275,244 Q283,250 291,244" stroke="#111" stroke-width="1.5" fill="none"/>
+  <!-- legs -->
+  <rect x="160" y="238" width="18" height="52" rx="6" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <rect x="180" y="238" width="18" height="52" rx="6" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <!-- body -->
+  <rect x="145" y="162" width="70" height="82" rx="10" fill="#1a1a6b" stroke="#111" stroke-width="2"/>
+  <rect x="140" y="202" width="80" height="16" rx="3" fill="#f5c518" stroke="#111" stroke-width="1.5"/>
+  <path d="M162,162 L178,183 L194,162" fill="white" stroke="#111" stroke-width="1.5"/>
+  <!-- shoulder armor -->
+  <path d="M132,175 L117,172 L112,188 L132,192" fill="#c0c0c0" stroke="#111" stroke-width="1.5"/>
+  <path d="M225,175 L240,172 L245,188 L225,192" fill="#c0c0c0" stroke="#111" stroke-width="1.5"/>
+  <!-- arms wide welcoming -->
+  <path d="M145,188 L100,167" stroke="#d4a574" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <path d="M215,188 L260,167" stroke="#d4a574" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <ellipse cx="97"  cy="165" rx="14" ry="11" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="263" cy="165" rx="14" ry="11" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <!-- head -->
+  <ellipse cx="178" cy="140" rx="29" ry="27" fill="#d4a574" stroke="#111" stroke-width="2"/>
+  <!-- ears forward warm -->
+  <polygon points="156,126 146,105 166,123" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="200,126 210,105 190,123" fill="#d4a574" stroke="#111" stroke-width="1.5"/>
+  <polygon points="157,124 148,108 165,122" fill="#ffcccc"/>
+  <polygon points="199,124 208,108 191,122" fill="#ffcccc"/>
+  <rect x="152" y="123" width="53" height="7" rx="3" fill="#111"/>
+  <!-- glasses -->
+  <circle cx="166" cy="140" r="11" fill="rgba(245,197,24,.1)" stroke="#f5c518" stroke-width="1.5"/>
+  <circle cx="190" cy="140" r="11" fill="rgba(245,197,24,.1)" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M155,136 L151,134" stroke="#f5c518" stroke-width="1.5"/>
+  <path d="M201,136 L205,134" stroke="#f5c518" stroke-width="1.5"/>
+  <!-- eyes warm blue -->
+  <ellipse cx="166" cy="140" rx="9" ry="8" fill="white" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="190" cy="140" rx="9" ry="8" fill="white" stroke="#111" stroke-width="1.5"/>
+  <ellipse cx="166" cy="140" rx="7" ry="7" fill="#1a6fb5"/>
+  <ellipse cx="190" cy="140" rx="7" ry="7" fill="#1a6fb5"/>
+  <ellipse cx="166" cy="140" rx="3.5" ry="3.5" fill="#111"/>
+  <ellipse cx="190" cy="140" rx="3.5" ry="3.5" fill="#111"/>
+  <ellipse cx="168" cy="137" rx="2" ry="2" fill="white"/>
+  <ellipse cx="192" cy="137" rx="2" ry="2" fill="white"/>
+  <!-- brows soft -->
+  <path d="M154,129 Q162,124 168,127" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M202,129 Q194,124 188,127" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- wide warm smile -->
+  <path d="M156,154 Q166,164 178,164 Q190,164 200,154" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- blush -->
+  <ellipse cx="154" cy="154" rx="9" ry="5" fill="rgba(255,100,100,.22)"/>
+  <ellipse cx="202" cy="154" rx="9" ry="5" fill="rgba(255,100,100,.22)"/>
+  <!-- whiskers -->
+  <line x1="142" y1="146" x2="160" y2="146" stroke="#111" stroke-width="1"/>
+  <line x1="142" y1="151" x2="160" y2="149" stroke="#111" stroke-width="1"/>
+  <line x1="196" y1="146" x2="214" y2="146" stroke="#111" stroke-width="1"/>
+  <line x1="196" y1="149" x2="214" y2="151" stroke="#111" stroke-width="1"/>
+  <!-- hearts -->
+  <path d="M82,85 C82,77 72,70 64,77 C56,70 46,77 46,85 C46,95 64,108 64,108 C64,108 82,95 82,85Z" fill="rgba(226,54,54,.45)" transform="scale(.55) translate(70,55)"/>
+  <path d="M310,68 C310,62 302,56 296,62 C290,56 282,62 282,68 C282,76 296,86 296,86 C296,86 310,76 310,68Z" fill="rgba(226,54,54,.4)" transform="scale(.5) translate(245,80)"/>
+</svg>
+<div class="cap tr org">Результат!</div>
+<div class="bub r" style="top:8px;left:8px;font-size:12px;max-width:168px;">Разберёмся на тренинге<br>31 мая!</div>
+<div class="sfx" style="bottom:8px;right:8px;font-size:32px;color:#e23636;-webkit-text-stroke:2px #111;">POW!</div>
+</div>
+
+</div><!-- /grid -->
+
+<!-- ══ CTA ══ -->
+<div class="cta-section">
+  <div class="cta-head">Готов стать<br>эмоциональным лидером?</div>
+  <div class="cta-sub">Тренинг · Жанна Адам · Астана</div>
+
+  <div class="event-bar">
+    <div class="ev-item"><div class="ev-lbl">Дата</div><div class="ev-val">31 МАЯ</div></div>
+    <div class="ev-item"><div class="ev-lbl">Город</div><div class="ev-val">АСТАНА</div></div>
+    <div class="ev-item"><div class="ev-lbl">Формат</div><div class="ev-val">ЖИВОЙ</div></div>
+    <div class="ev-item"><div class="ev-lbl">Для кого</div><div class="ev-val" style="font-size:13px;line-height:1.2;">РАЗУМНЫЕ<br>ЛЮДИ</div></div>
+  </div>
+
+  <a class="btn-wa"
+     href="https://wa.me/77017169473?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D0%96%D0%B0%D0%BD%D0%BD%D0%B0!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D0%BD%D0%B3%20%D0%AD%D0%BC%D0%BE%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%9B%D0%B8%D0%B4%D0%B5%D1%80%D1%81%D1%82%D0%B2%D0%BE%2031%20%D0%BC%D0%B0%D1%8F%20%D0%B2%20%D0%90%D1%81%D1%82%D0%B0%D0%BD%D0%B5."
+     target="_blank">
+    📲 Написать в WhatsApp
+  </a>
+
+  <div class="divider">или заполни форму</div>
+
+  <div id="form">
+    <div class="form-row">
+      <input id="fn" type="text" placeholder="Ваше имя"/>
+      <input id="fp" type="tel"  placeholder="+7 700 000 00 00"/>
+    </div>
+    <div class="btns">
+      <button class="btn-enroll" onclick="send()">Записаться на тренинг!</button>
+    </div>
+  </div>
+  <div class="ok-msg" id="ok">
+    <p>Заявка отправлена!</p>
+    <small>Жанна свяжется с вами в WhatsApp</small>
+  </div>
+
+  <div class="author">© 2026 Жанна Адам · Эмоциональное Лидерство</div>
+</div>
+
+</div><!-- /comic-book -->
+<script>
+function send(){
+  var n=document.getElementById('fn').value.trim();
+  var p=document.getElementById('fp').value.trim();
+  if(!n||!p){alert('Заполните имя и телефон!');return;}
+  var m=encodeURIComponent('Новая заявка!\nИмя: '+n+'\nТелефон: '+p);
+  window.open('https://wa.me/77017169473?text='+m,'_blank');
+  document.getElementById('form').style.display='none';
+  document.getElementById('ok').style.display='block';
+}
+</script>
+</body>
+</html>
