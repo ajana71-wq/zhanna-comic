@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>21 день · Питание</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #f5f0e8;
+  --bg2:      #ede6d6;
+  --surface:  #fff9ef;
+  --card:     #ffffff;
+  --green1:   #3a7d44;
+  --green2:   #5aab5e;
+  --green3:   #a8d5a2;
+  --orange:   #e07b39;
+  --orange2:  #f5a462;
+  --terra:    #c1603a;
+  --brown:    #7a5c40;
+  --text:     #2c2016;
+  --muted:    #9b8770;
+  --border:   rgba(58,125,68,0.18);
+  --shadow:   0 4px 24px rgba(58,80,40,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 120px;
+}
+
+/* Organic background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(90,171,94,0.13) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 10% 80%, rgba(224,123,57,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap { position: relative; z-index: 1; max-width: 460px; margin: 0 auto; padding: 0 16px; }
+
+/* ── HEADER ── */
+.header {
+  padding: 28px 0 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.header-left h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--green1);
+}
+.header-left p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+  font-weight: 400;
+}
+.leaf-badge {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--green2), var(--green1));
+  border-radius: 50% 20% 50% 20%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 6px 18px rgba(58,125,68,0.3);
+  flex-shrink: 0;
+  animation: leafFloat 4s ease-in-out infinite;
+}
+@keyframes leafFloat {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-5px) rotate(3deg); }
+}
+
+/* ── STREAK / PROGRESS ── */
+.progress-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.big-day {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--orange);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.big-day span { font-size: 18px; color: var(--muted); font-family: 'Nunito', sans-serif; font-weight: 400; }
+.progress-right { flex: 1 }
+.progress-right h3 { font-size: 14px; font-weight: 600; color: var(--green1); margin-bottom: 8px; }
+.track-bar-wrap {
+  background: var(--bg2);
+  border-radius: 100px;
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.track-bar {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--green2), var(--orange2));
+  transition: width 0.6s cubic-bezier(.34,1.56,.64,1);
+  min-width: 4px;
+}
+.track-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+.streak-row { display: flex; gap: 8px; margin-top: 8px; }
+.streak-chip {
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  color: #fff;
+  border-radius: 100px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.streak-chip.green { background: linear-gradient(135deg, var(--green1), var(--green2)); }
+
+/* ── 21-DOT GRID ── */
+.dot-section { margin-bottom: 20px; }
+.dot-section h4 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.dot-item {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid var(--border);
+  background: var(--bg2);
+  color: var(--muted);
+  transition: all 0.2s;
+  position: relative;
+  user-select: none;
+}
+.dot-item.active {
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  border-color: var(--orange);
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(224,123,57,0.35);
+  transform: scale(1.08);
+}
+.dot-item.done {
+  background: linear-gradient(135deg, var(--green1), var(--green2));
+  border-color: var(--green1);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(58,125,68,0.3);
+}
+.dot-item.done::after {
+  content: '✓';
+  position: absolute;
+  font-size: 9px;
+  bottom: 2px;
+  right: 3px;
+  color: rgba(255,255,255,0.7);
+}
+.dot-item.future { opacity: 0.4; cursor: default; }
+
+/* ── TABS ── */
+.tabs {
+  display: flex;
+  background: var(--bg2);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 16px;
+  gap: 4px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 9px 0;
+  border: none;
+  border-radius: 11px;
+  background: transparent;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.22s;
+}
+.tab-btn.active {
+  background: var(--card);
+  color: var(--green1);
+  box-shadow: 0 2px 10px rgba(58,80,40,0.10);
+}
+
+/* ── HABIT CARDS ── */
+.habits-list { display: flex; flex-direction: column; gap: 10px; }
+.habit-card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 15px 16px;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 12px rgba(58,80,40,0.07);
+  cursor: pointer;
+  transition: all 0.22s;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.habit-card:active { transform: scale(0.98); }
+.habit-card.done {
+  border-color: rgba(58,125,68,0.35);
+  background: linear-gradient(135deg, rgba(90,171,94,0.06), rgba(58,125,68,0.04));
+}
+.habit-icon {
+  font-size: 26px;
+  width: 44px; height: 44px;
+  background: var(--bg2);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.22s;
+}
+.habit-card.done .habit-icon {
+  background: linear-gradient(135deg, rgba(58,125,68,0.15), rgba(90,171,94,0.12));
+}
+.habit-body { flex: 1 }
+.habit-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+  transition: color 0.2s;
+}
+.habit-card.done .habit-title { color: var(--green1); }
+.habit-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+.habit-check {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s;
+  background: transparent;
+}
+.habit-card.done .habit-check {
+  background: var(--green1);
+  border-color: var(--green1);
+}
+.check-svg { display: none; }
+.habit-card.done .check-svg { display: block; }
+
+/* ── WATER ── */
+.water-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 18px;
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+}
+.water-card h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.water-glasses { display: flex; gap: 8px; flex-wrap: wrap; }
+.glass {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  border: 2px solid rgba(58,125,68,0.2);
+  background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.glass.filled {
+  background: linear-gradient(135deg, #74c0fc, #4dabf7);
+  border-color: #4dabf7;
+  box-shadow: 0 3px 10px rgba(77,171,247,0.3);
+  transform: scale(1.06);
+}
+.water-lbl { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+/* ── MEALS LOG ── */
+.meal-section { margin-bottom: 10px; }
+.meal-header { font-size: 13px; font-weight: 600; color: var(--brown); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.meal-input-row { display: flex; gap: 8px; }
+.meal-input {
+  flex: 1;
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.meal-input:focus { border-color: var(--green2); }
+.meal-input::placeholder { color: var(--muted); }
+.meal-add-btn {
+  background: linear-gradient(135deg, var(--green1), var(--green2));
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.meal-add-btn:active { opacity: 0.85; }
+.meal-items { margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
+.meal-item {
+  background: var(--bg2);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: popIn 0.25s ease;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.meal-del { color: var(--muted); cursor: pointer; font-size: 16px; padding: 0 4px; }
+
+/* ── REMINDERS ── */
+.reminder-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 18px;
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+}
+.reminder-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.reminder-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bg2);
+}
+.reminder-row:last-child { border-bottom: none; }
+.reminder-info { flex: 1 }
+.reminder-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.reminder-time { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.time-input {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green1);
+  outline: none;
+  width: 88px;
+  text-align: center;
+  cursor: pointer;
+}
+.toggle-wrap { display: flex; align-items: center; gap: 10px; }
+.toggle {
+  position: relative;
+  width: 44px; height: 24px;
+  flex-shrink: 0;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--bg2);
+  border-radius: 100px;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  transition: background 0.25s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  left: 2px; top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--muted);
+  transition: all 0.25s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.toggle input:checked + .toggle-slider { background: var(--green1); border-color: var(--green1); }
+.toggle input:checked + .toggle-slider::before {
+  transform: translate(20px, -50%);
+  background: #fff;
+}
+.notif-note {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px 0 0;
+  line-height: 1.5;
+}
+.notif-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  border: none;
+  border-radius: 14px;
+  padding: 13px;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: opacity 0.2s;
+}
+.notif-btn:active { opacity: 0.85; }
+.perm-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+.perm-status.granted { background: rgba(58,125,68,0.12); color: var(--green1); }
+.perm-status.denied  { background: rgba(224,123,57,0.12); color: var(--terra); }
+.perm-status.default { background: var(--bg2); color: var(--muted); }
+
+/* ── BOTTOM BAR ── */
+.bottom-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(245,240,232,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 10px 20px 20px;
+  z-index: 100;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.bottom-row { display: flex; align-items: center; justify-content: space-around; }
+.bot-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+.bot-item:active { background: var(--bg2); }
+.bot-icon { font-size: 22px; }
+.bot-lbl { font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.04em; }
+.bot-item.active .bot-lbl { color: var(--green1); }
+.bot-item.active .bot-icon { transform: scale(1.12); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%; transform: translateX(-50%) translateY(16px);
+  background: var(--green1);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 100px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 200;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(58,125,68,0.4);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── VIEWS ── */
+.view { display: none; }
+.view.active { display: block; }
+
+/* section heading */
+.sec-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sec-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>21 день<br>нового питания</h1>
+      <p id="headerDate">Загрузка...</p>
+    </div>
+    <div class="leaf-badge">🌿</div>
+  </div>
+
+  <!-- VIEWS -->
+
+  <!-- ══ VIEW: СЕГОДНЯ ══ -->
+  <div class="view active" id="view-today">
+
+    <!-- Progress -->
+    <div class="progress-card">
+      <div>
+        <div class="big-day" id="bigDay">1 <span>день</span></div>
+      </div>
+      <div class="progress-right">
+        <h3>Прогресс марафона</h3>
+        <div class="track-bar-wrap">
+          <div class="track-bar" id="trackBar" style="width:0%"></div>
+        </div>
+        <div class="track-meta">
+          <span id="trackText">0 из 21</span>
+          <span id="trackPct">0%</span>
+        </div>
+        <div class="streak-row">
+          <span class="streak-chip" id="streakChip">🔥 0 дней</span>
+          <span class="streak-chip green" id="habitsChip">✓ 0/7</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 21 dots -->
+    <div class="dot-section">
+      <h4>Карта 21 дня</h4>
+      <div class="dot-grid" id="dotGrid"></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('habits')">Привычки</button>
+      <button class="tab-btn" onclick="switchTab('meals')">Питание</button>
+      <button class="tab-btn" onclick="switchTab('water')">Вода</button>
+    </div>
+
+    <!-- Tab: habits -->
+    <div id="tab-habits">
+      <div class="habits-list" id="habitsList"></div>
+    </div>
+
+    <!-- Tab: meals -->
+    <div id="tab-meals" style="display:none">
+      <div class="meal-section">
+        <div class="meal-header">🌅 Завтрак</div>
+        <div class="meal-input-row">
+          <input class="meal-input" id="meal-breakfast" placeholder="Что съел(а)?">
+          <button class="meal-add-btn" onclick="addMeal('breakfast')">+</button>
+        </div>
+        <div class="meal-items" id="items-breakfast"></div>
+      </div>
+      <div class="meal-section">
+        <div class="meal-header">☀️ Обед</div>
+        <div class="meal-input-row">
+          <input class="meal-input" id="meal-lunch" placeholder="Что съел(а)?">
+          <button class="meal-add-btn" onclick="addMeal('lunch')">+</button>
+        </div>
+        <div class="meal-items" id="items-lunch"></div>
+      </div>
+      <div class="meal-section">
+        <div class="meal-header">🌙 Ужин</div>
+        <div class="meal-input-row">
+          <input class="meal-input" id="meal-dinner" placeholder="Что съел(а)?">
+          <button class="meal-add-btn" onclick="addMeal('dinner')">+</button>
+        </div>
+        <div class="meal-items" id="items-dinner"></div>
+      </div>
+      <div class="meal-section">
+        <div class="meal-header">🍎 Перекус</div>
+        <div class="meal-input-row">
+          <input class="meal-input" id="meal-snack" placeholder="Что съел(а)?">
+          <button class="meal-add-btn" onclick="addMeal('snack')">+</button>
+        </div>
+        <div class="meal-items" id="items-snack"></div>
+      </div>
+    </div>
+
+    <!-- Tab: water -->
+    <div id="tab-water" style="display:none">
+      <div class="water-card">
+        <h4>💧 Норма воды — 8 стаканов</h4>
+        <div class="water-glasses" id="waterGlasses"></div>
+        <div class="water-lbl" id="waterLbl">0 из 8 стаканов (0 мл)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VIEW: НАПОМИНАНИЯ ══ -->
+  <div class="view" id="view-remind">
+    <div class="sec-title">Уведомления</div>
+
+    <div class="reminder-card">
+      <h4>🔔 Настройка напоминаний</h4>
+      <div id="permStatus" class="perm-status default">⚪ Статус разрешений</div>
+
+      <div class="reminder-row" id="rem-breakfast">
+        <div class="reminder-info">
+          <div class="reminder-name">🌅 Завтрак</div>
+          <div class="reminder-time">Время приёма пищи</div>
+        </div>
+        <div class="toggle-wrap">
+          <input type="time" class="time-input" value="08:00" id="time-breakfast">
+          <label class="toggle"><input type="checkbox" id="tog-breakfast" onchange="scheduleReminder('breakfast')"><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+
+      <div class="reminder-row">
+        <div class="reminder-info">
+          <div class="reminder-name">☀️ Обед</div>
+          <div class="reminder-time">Время приёма пищи</div>
+        </div>
+        <div class="toggle-wrap">
+          <input type="time" class="time-input" value="13:00" id="time-lunch">
+          <label class="toggle"><input type="checkbox" id="tog-lunch" onchange="scheduleReminder('lunch')"><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+
+      <div class="reminder-row">
+        <div class="reminder-info">
+          <div class="reminder-name">🌙 Ужин</div>
+          <div class="reminder-time">Время приёма пищи</div>
+        </div>
+        <div class="toggle-wrap">
+          <input type="time" class="time-input" value="19:00" id="time-dinner">
+          <label class="toggle"><input type="checkbox" id="tog-dinner" onchange="scheduleReminder('dinner')"><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+
+      <div class="reminder-row">
+        <div class="reminder-info">
+          <div class="reminder-name">💧 Вода</div>
+          <div class="reminder-time">Каждые 2 часа</div>
+        </div>
+        <div class="toggle-wrap">
+          <input type="time" class="time-input" value="10:00" id="time-water">
+          <label class="toggle"><input type="checkbox" id="tog-water" onchange="scheduleReminder('water')"><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+
+      <div class="reminder-row">
+        <div class="reminder-info">
+          <div class="reminder-name">🌿 Итог дня</div>
+          <div class="reminder-time">Вечерняя проверка</div>
+        </div>
+        <div class="toggle-wrap">
+          <input type="time" class="time-input" value="21:00" id="time-evening">
+          <label class="toggle"><input type="checkbox" id="tog-evening" onchange="scheduleReminder('evening')"><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+
+      <button class="notif-btn" onclick="requestAndEnableAll()">🔔 Включить все уведомления</button>
+      <div class="notif-note">Уведомления работают пока открыт браузер.<br>Для фоновых — добавь на главный экран (PWA).</div>
+    </div>
+  </div>
+
+  <!-- ══ VIEW: ИСТОРИЯ ══ -->
+  <div class="view" id="view-history">
+    <div class="sec-title">История 21 дня</div>
+    <div id="historyList"></div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- Bottom nav -->
+<div class="bottom-bar">
+  <div class="bottom-row">
+    <div class="bot-item active" id="nav-today" onclick="switchView('today')">
+      <div class="bot-icon">🏠</div>
+      <div class="bot-lbl">Сегодня</div>
+    </div>
+    <div class="bot-item" id="nav-remind" onclick="switchView('remind')">
+      <div class="bot-icon">🔔</div>
+      <div class="bot-lbl">Напоминания</div>
+    </div>
+    <div class="bot-item" id="nav-history" onclick="switchView('history')">
+      <div class="bot-icon">📅</div>
+      <div class="bot-lbl">История</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────
+const HABITS = [
+  { id: 'no_sugar',   icon: '🚫', title: 'Без сахара',        desc: 'Исключить сладкое, газировку, пакетные соки' },
+  { id: 'veg',        icon: '🥦', title: '5 овощей и фруктов', desc: 'Минимум 5 порций свежих овощей или фруктов' },
+  { id: 'protein',    icon: '🥚', title: 'Белок в каждый приём',desc: 'Яйца, мясо, рыба, бобовые, творог' },
+  { id: 'no_junk',    icon: '🍔', title: 'Без фастфуда',       desc: 'Никакого фастфуда и полуфабрикатов' },
+  { id: 'slow_eat',   icon: '🍽️', title: 'Есть медленно',      desc: 'Пережёвывать 20+ раз, без телефона за едой' },
+  { id: 'no_late',    icon: '🌙', title: 'Не есть после 20:00', desc: 'Последний приём пищи до 20:00' },
+  { id: 'gratitude',  icon: '🙏', title: 'Благодарность телу', desc: 'Записать 1 позитивное наблюдение о питании' },
+];
+
+function loadS() { try { return JSON.parse(localStorage.getItem('nut21') || '{}'); } catch { return {}; } }
+function saveS(s) { localStorage.setItem('nut21', JSON.stringify(s)); }
+
+let S = loadS();
+if (!S.startDate) { S.startDate = new Date().toISOString().slice(0,10); saveS(S); }
+if (!S.days) S.days = {};
+if (!S.reminders) S.reminders = {};
+
+const START = new Date(S.startDate);
+START.setHours(0,0,0,0);
+
+function todayStr() { return new Date().toISOString().slice(0,10); }
+function dayIndex(dateStr) {
+  const d = new Date(dateStr); d.setHours(0,0,0,0);
+  return Math.max(0, Math.round((d - START) / 86400000));
+}
+function currentDay() { return Math.min(20, dayIndex(todayStr())); }
+
+let reminderTimers = {};
+
+// ── RENDER ALL ─────────────────────────────────────────
+function renderAll() {
+  const cd = currentDay();
+  const today = todayStr();
+
+  // Header date
+  document.getElementById('headerDate').textContent =
+    new Date().toLocaleDateString('ru', { weekday:'long', day:'numeric', month:'long' });
+
+  // Big day
+  document.getElementById('bigDay').innerHTML = (cd + 1) + ' <span>день</span>';
+
+  // Progress
+  const completedDays = Object.keys(S.days).filter(d => {
+    const idx = dayIndex(d);
+    return idx < cd && allHabitsDone(d);
+  }).length;
+  const pct = Math.round(((cd) / 21) * 100);
+  document.getElementById('trackBar').style.width = pct + '%';
+  document.getElementById('trackText').textContent = (cd) + ' из 21';
+  document.getElementById('trackPct').textContent = pct + '%';
+
+  // Streak
+  let streak = 0;
+  for (let i = cd; i >= 0; i--) {
+    const ds = dateOfDay(i);
+    if (allHabitsDone(ds)) streak++; else break;
+  }
+  document.getElementById('streakChip').textContent = '🔥 ' + streak + ' дней';
+
+  const todayDone = (S.days[today]?.habits || []).length;
+  document.getElementById('habitsChip').textContent = '✓ ' + todayDone + '/7';
+
+  renderDots(cd);
+  renderHabits(today);
+  renderWater(today);
+  renderMeals(today);
+}
+
+function dateOfDay(idx) {
+  const d = new Date(START);
+  d.setDate(d.getDate() + idx);
+  return d.toISOString().slice(0,10);
+}
+
+function allHabitsDone(dateStr) {
+  return (S.days[dateStr]?.habits || []).length >= HABITS.length;
+}
+
+// ── DOTS ──────────────────────────────────────────────
+function renderDots(cd) {
+  const grid = document.getElementById('dotGrid');
+  grid.innerHTML = '';
+  for (let i = 0; i < 21; i++) {
+    const ds = dateOfDay(i);
+    const done = allHabitsDone(ds);
+    const el = document.createElement('div');
+    el.className = 'dot-item' +
+      (i === cd ? ' active' : done ? ' done' : i < cd ? '' : ' future');
+    el.textContent = i + 1;
+    if (i <= cd) el.onclick = () => { /* jump to day view if needed */ };
+    grid.appendChild(el);
+  }
+}
+
+// ── HABITS ────────────────────────────────────────────
+function renderHabits(today) {
+  const done = S.days[today]?.habits || [];
+  const list = document.getElementById('habitsList');
+  list.innerHTML = '';
+  HABITS.forEach(h => {
+    const isDone = done.includes(h.id);
+    const card = document.createElement('div');
+    card.className = 'habit-card' + (isDone ? ' done' : '');
+    card.innerHTML = `
+      <div class="habit-icon">${h.icon}</div>
+      <div class="habit-body">
+        <div class="habit-title">${h.title}</div>
+        <div class="habit-desc">${h.desc}</div>
+      </div>
+      <div class="habit-check">
+        <svg class="check-svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>`;
+    card.addEventListener('click', () => toggleHabit(h.id, today));
+    list.appendChild(card);
+  });
+}
+
+function toggleHabit(id, today) {
+  if (!S.days[today]) S.days[today] = {};
+  if (!S.days[today].habits) S.days[today].habits = [];
+  const arr = S.days[today].habits;
+  const idx = arr.indexOf(id);
+  if (idx >= 0) arr.splice(idx, 1);
+  else {
+    arr.push(id);
+    showToast(id === 'no_sugar' ? '🎉 Без сахара — молодец!' : '✅ Привычка выполнена!');
+  }
+  saveS(S);
+  renderAll();
+}
+
+// ── WATER ─────────────────────────────────────────────
+function renderWater(today) {
+  if (!S.days[today]) S.days[today] = {};
+  const glasses = S.days[today].water || 0;
+  const wrap = document.getElementById('waterGlasses');
+  wrap.innerHTML = '';
+  for (let i = 0; i < 8; i++) {
+    const g = document.createElement('div');
+    g.className = 'glass' + (i < glasses ? ' filled' : '');
+    g.textContent = i < glasses ? '💧' : '🥛';
+    g.addEventListener('click', () => setWater(today, i < glasses ? i : i + 1));
+    wrap.appendChild(g);
+  }
+  document.getElementById('waterLbl').textContent =
+    glasses + ' из 8 стаканов (' + (glasses * 250) + ' мл)';
+}
+
+function setWater(today, n) {
+  if (!S.days[today]) S.days[today] = {};
+  S.days[today].water = n;
+  saveS(S);
+  renderWater(today);
+  if (n === 8) showToast('💧 Норма воды выполнена!');
+}
+
+// ── MEALS ─────────────────────────────────────────────
+function renderMeals(today) {
+  ['breakfast','lunch','dinner','snack'].forEach(meal => {
+    const items = (S.days[today]?.meals?.[meal] || []);
+    const wrap = document.getElementById('items-' + meal);
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    items.forEach((item, i) => {
+      const el = document.createElement('div');
+      el.className = 'meal-item';
+      el.innerHTML = `<span>${item}</span><span class="meal-del" onclick="delMeal('${meal}', ${i})">×</span>`;
+      wrap.appendChild(el);
+    });
+  });
+}
+
+function addMeal(meal) {
+  const inp = document.getElementById('meal-' + meal);
+  const val = inp.value.trim();
+  if (!val) return;
+  const today = todayStr();
+  if (!S.days[today]) S.days[today] = {};
+  if (!S.days[today].meals) S.days[today].meals = {};
+  if (!S.days[today].meals[meal]) S.days[today].meals[meal] = [];
+  S.days[today].meals[meal].push(val);
+  inp.value = '';
+  saveS(S);
+  renderMeals(today);
+  showToast('🍽️ Записано!');
+}
+
+function delMeal(meal, idx) {
+  const today = todayStr();
+  S.days[today].meals[meal].splice(idx, 1);
+  saveS(S);
+  renderMeals(today);
+}
+
+['breakfast','lunch','dinner','snack'].forEach(m => {
+  document.getElementById('meal-' + m)?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') addMeal(m);
+  });
+});
+
+// ── TABS ──────────────────────────────────────────────
+function switchTab(tab) {
+  ['habits','meals','water'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === tab ? '' : 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', ['habits','meals','water'][i] === tab);
+  });
+}
+
+// ── VIEWS ─────────────────────────────────────────────
+function switchView(view) {
+  ['today','remind','history'].forEach(v => {
+    document.getElementById('view-' + v).classList.toggle('active', v === view);
+    document.getElementById('nav-' + v)?.classList.toggle('active', v === view);
+  });
+  if (view === 'history') renderHistory();
+}
+
+// ── HISTORY ───────────────────────────────────────────
+function renderHistory() {
+  const list = document.getElementById('historyList');
+  list.innerHTML = '';
+  const cd = currentDay();
+  for (let i = 0; i <= cd; i++) {
+    const ds = dateOfDay(i);
+    const dayData = S.days[ds] || {};
+    const habits = dayData.habits || [];
+    const water = dayData.water || 0;
+    const card = document.createElement('div');
+    card.style.cssText = `background:var(--card);border-radius:16px;padding:14px 16px;
+      margin-bottom:10px;border:1.5px solid var(--border);`;
+    const done = habits.length >= 7;
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700">
+          День ${i+1} <span style="font-family:'Nunito',sans-serif;font-size:12px;color:var(--muted);font-weight:400">
+          ${new Date(ds).toLocaleDateString('ru',{day:'numeric',month:'short'})}</span>
+        </div>
+        <span style="font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;
+          background:${done ? 'rgba(58,125,68,0.12)' : 'var(--bg2)'};
+          color:${done ? 'var(--green1)' : 'var(--muted)'}">
+          ${done ? '✅ Выполнен' : habits.length + '/7'}
+        </span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        ${HABITS.map(h => `<span title="${h.title}" style="font-size:20px;opacity:${habits.includes(h.id)?1:0.25}">${h.icon}</span>`).join('')}
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-top:8px">💧 Вода: ${water}/8 стаканов</div>`;
+    list.appendChild(card);
+  }
+}
+
+// ── NOTIFICATIONS ─────────────────────────────────────
+const REM_LABELS = {
+  breakfast: '🌅 Завтрак', lunch: '☀️ Обед',
+  dinner: '🌙 Ужин', water: '💧 Вода', evening: '🌿 Итог дня'
+};
+const REM_BODIES = {
+  breakfast: 'Время для здорового завтрака! 🥗',
+  lunch: 'Обеденный перерыв — не пропусти сбалансированный обед! 🍱',
+  dinner: 'Лёгкий ужин до 20:00 — помни о привычке! 🌙',
+  water: 'Выпей стакан воды — ты уже сегодня пил(а)? 💧',
+  evening: 'Отметь выполненные привычки за день! 🌿'
+};
+
+function updatePermStatus() {
+  const el = document.getElementById('permStatus');
+  if (!('Notification' in window)) {
+    el.className = 'perm-status denied'; el.textContent = '🔴 Уведомления не поддерживаются'; return;
+  }
+  const p = Notification.permission;
+  if (p === 'granted') { el.className = 'perm-status granted'; el.textContent = '🟢 Уведомления разрешены'; }
+  else if (p === 'denied') { el.className = 'perm-status denied'; el.textContent = '🔴 Уведомления заблокированы'; }
+  else { el.className = 'perm-status default'; el.textContent = '⚪ Нужно разрешение'; }
+}
+
+async function requestAndEnableAll() {
+  if (!('Notification' in window)) { showToast('❌ Браузер не поддерживает уведомления'); return; }
+  const perm = await Notification.requestPermission();
+  updatePermStatus();
+  if (perm === 'granted') {
+    ['breakfast','lunch','dinner','water','evening'].forEach(key => {
+      document.getElementById('tog-' + key).checked = true;
+      scheduleReminder(key);
+    });
+    showToast('✅ Все напоминания включены!');
+  } else {
+    showToast('⚠️ Разрешите уведомления в настройках браузера');
+  }
+}
+
+function scheduleReminder(key) {
+  if (reminderTimers[key]) { clearInterval(reminderTimers[key]); delete reminderTimers[key]; }
+  const tog = document.getElementById('tog-' + key);
+  if (!tog?.checked) return;
+  if (Notification.permission !== 'granted') {
+    Notification.requestPermission().then(p => { updatePermStatus(); if (p === 'granted') scheduleReminder(key); });
+    return;
+  }
+  const timeVal = document.getElementById('time-' + key)?.value || '08:00';
+  const [h, m] = timeVal.split(':').map(Number);
+
+  function fireIfTime() {
+    const now = new Date();
+    if (now.getHours() === h && now.getMinutes() === m && now.getSeconds() < 30) {
+      new Notification(REM_LABELS[key], {
+        body: REM_BODIES[key],
+        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🌿</text></svg>'
+      });
+    }
+  }
+  reminderTimers[key] = setInterval(fireIfTime, 30000);
+  fireIfTime();
+  showToast('🔔 Напоминание: ' + REM_LABELS[key] + ' в ' + timeVal);
+}
+
+// ── TOAST ─────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── INIT ──────────────────────────────────────────────
+updatePermStatus();
+renderAll();
+</script>
+</body>
+</html>
